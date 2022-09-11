@@ -20,13 +20,13 @@ sh "${mavenHome}/bin/mvn clean deploy"
 
 stage('DeployAppIntoTomcatServer'){
 sshagent(['342ab605-5997-4346-b326-b7461fdeafef']) {
- sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war  ec2-user@:/opt/apache-tomcat-9.0.65/webapps/"
+ sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war  ec2-user@10.10.1.210:/opt/apache-tomcat-9.0.65/webapps/"
 }
 }
 
 }//try block closing
 catch (e){
-slackNotifications(currentBuild.result)
+slackNotifications('FAILURE')
 throw e
 }
 finally{
