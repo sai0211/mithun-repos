@@ -20,9 +20,9 @@ maven 'maven3.8.6'
 stages{
 stage('CheckOutCode'){
 steps{
-git branch: 'development', credentialsId: '519aacb7-5c2e-417c-afa6-c600ea8ecf97', url: 'https://github.com/sai0211/mithun-repos.git'
-
+git 'https://github.com/sai0211/mithun-repos.git'
 }
+/*
 //This stage will do the build
 stage('Build'){
 steps{
@@ -48,7 +48,7 @@ stage('DeployAppIntoTomcatServer')
 steps{
 sshagent(['342ab605-5997-4346-b326-b7461fdeafef']) {
  sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war  ec2-user@:/opt/apache-tomcat-9.0.65/webapps/"
-
+/*
 }
 }
 }
